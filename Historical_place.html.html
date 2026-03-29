@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eiffel Tower – Paris, France</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --dark: #1a1a2e;
+      --dark2: #16213e;
+      --cream: #f5f0e8;
+      --cream2: #fdf8f0;
+      --text: #3a3220;
+      --muted: #7a6e5f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--text);
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      line-height: 1.85;
+    }
+
+    /* ── HERO HEADER ── */
+    header {
+      background: linear-gradient(160deg, #0f0f1e 0%, #1a1a2e 50%, #0e1628 100%);
+      color: var(--cream);
+      text-align: center;
+      padding: 80px 20px 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(201,168,76,0.05) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, transparent, transparent 22px, rgba(201,168,76,0.03) 22px, rgba(201,168,76,0.03) 23px);
+    }
+
+    /* SVG tower silhouette */
+    .tower-silhouette {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.06;
+      width: 160px;
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      border-radius: 20px;
+      margin-bottom: 22px;
+      background: rgba(201,168,76,0.07);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      letter-spacing: 0.03em;
+      color: var(--gold);
+      text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+      margin-bottom: 10px;
+    }
+
+    header p.subtitle {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #b0aaa0;
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+    }
+
+    .header-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 0 auto;
+      max-width: 300px;
+    }
+
+    .header-divider::before,
+    .header-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+
+    .header-divider::after {
+      background: linear-gradient(to left, transparent, var(--gold));
+    }
+
+    .header-divider span {
+      color: var(--gold);
+      font-size: 1rem;
+    }
+
+    /* ── QUICK STATS ── */
+    .stats-bar {
+      background: var(--dark2);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 22px 36px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: var(--gold);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #7a8090;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 30px 70px;
+    }
+
+    /* Section heading */
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      color: var(--dark);
+      margin-top: 56px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+    }
+
+    h2 .h2-icon {
+      font-size: 1.2rem;
+      color: var(--gold);
+    }
+
+    /* Paragraphs */
+    p {
+      margin-bottom: 18px;
+      text-align: justify;
+      color: #3a3220;
+    }
+
+    /* ── HIGHLIGHT QUOTE ── */
+    .highlight-quote {
+      background: linear-gradient(135deg, var(--dark) 0%, #243050 100%);
+      border-left: 4px solid var(--gold);
+      padding: 28px 34px;
+      margin: 40px 0;
+      border-radius: 0 8px 8px 0;
+      position: relative;
+    }
+
+    .highlight-quote::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: 0.25;
+      position: absolute;
+      top: -10px;
+      left: 14px;
+      line-height: 1;
+    }
+
+    .highlight-quote p {
+      color: #d4cfc8;
+      font-style: italic;
+      font-size: 1.1rem;
+      margin: 0;
+      position: relative;
+      text-align: left;
+    }
+
+    .highlight-quote cite {
+      display: block;
+      margin-top: 10px;
+      color: var(--gold-light);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      font-style: normal;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      margin: 30px 0 10px;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+
+    .timeline-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-text {
+      font-size: 0.97rem;
+      color: var(--text);
+      margin-top: 2px;
+    }
+
+    /* ── FACTS LIST ── */
+    ul.facts-list {
+      list-style: none;
+      margin: 16px 0 10px;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 600px) {
+      ul.facts-list { grid-template-columns: 1fr; }
+      .stats-bar { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    }
+
+    ul.facts-list li {
+      padding: 14px 18px;
+      background: var(--cream2);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-size: 0.96rem;
+      line-height: 1.6;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    ul.facts-list li:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+    }
+
+    ul.facts-list li::before {
+      content: "✦ ";
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: linear-gradient(160deg, #0f0f1e, var(--dark));
+      color: #6a6460;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.95rem;
+      border-top: 2px solid var(--gold);
+    }
+
+    footer .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    footer p { color: #7a7268; font-style: italic; margin: 0; text-align: center; }
+
+    footer .footer-line {
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+      margin: 14px auto;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <svg class="tower-silhouette" viewBox="0 0 100 200" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="50,0 44,60 56,60"/>
+      <rect x="42" y="58" width="16" height="4"/>
+      <polygon points="44,62 34,110 66,110 56,62"/>
+      <rect x="32" y="108" width="36" height="5"/>
+      <polygon points="34,113 20,170 80,170 66,113"/>
+      <rect x="18" y="168" width="64" height="6"/>
+      <polygon points="20,174 10,200 90,200 80,174"/>
+    </svg>
+    <div class="header-inner">
+      <div class="header-badge">&#127981; World Heritage · Paris, France</div>
+      <h1>The Eiffel Tower</h1>
+      <p class="subtitle">La Dame de Fer &nbsp;·&nbsp; Built 1887–1889</p>
+      <div class="header-divider"><span>❧</span></div>
+    </div>
+  </header>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-number">330m</span>
+      <span class="stat-label">Height</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">1889</span>
+      <span class="stat-label">Year Built</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">7M+</span>
+      <span class="stat-label">Visitors / Year</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">7,300t</span>
+      <span class="stat-label">Wrought Iron</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">1,665</span>
+      <span class="stat-label">Steps to Top</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+
+    <h2><span class="h2-icon">🗼</span> About the Eiffel Tower</h2>
+
+    <p>The Eiffel Tower is one of the most iconic and recognizable structures in the entire world. Standing tall in the heart of Paris, France, it was originally built as a temporary exhibition entrance arch for the 1889 World's Fair — the <em>Exposition Universelle</em> — which celebrated the 100th anniversary of the French Revolution. Today, it stands as the most visited paid monument on the planet.</p>
+
+    <p>Located on the Champ de Mars in the 7th arrondissement of Paris, the Eiffel Tower sits along the banks of the Seine River. It was designed and engineered by Gustave Eiffel, whose company specialized in metal frameworks and large-scale iron structures. The tower reaches a total height of 330 meters (1,083 feet) including its broadcast antenna, making it the tallest structure in Paris.</p>
+
+    <div class="highlight-quote">
+      <p>To build something on the scale of the Eiffel Tower is to leave a permanent mark on civilization — iron turned into poetry.</p>
+      <cite>— Gustave Eiffel, Engineer &amp; Architect</cite>
+    </div>
+
+    <p>Constructed between 1887 and 1889, the tower was initially met with mixed reactions from Parisians. Many artists and intellectuals called it an eyesore and demanded its removal after the fair. However, its strategic value as a powerful radio transmission tower saved it from demolition once its original 20-year permit expired. Over the following decades, it transformed from a controversial lattice of iron into the beloved global symbol it is today.</p>
+
+    <p>The Eiffel Tower holds immense historical and cultural importance. It represented the cutting-edge industrial engineering of the 19th century and demonstrated what human creativity, mathematics, and iron could achieve together. It remains an enduring symbol of French ingenuity, romance, and artistic ambition — visited by nearly 7 million people every year, making it a cornerstone of global tourism and cultural heritage.</p>
+
+    <h2><span class="h2-icon">📅</span> Historical Timeline</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1887</div>
+        <div class="timeline-text">Construction begins on January 28th on the Champ de Mars, Paris.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1889</div>
+        <div class="timeline-text">Tower is completed and inaugurated for the World's Fair on March 31st.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1909</div>
+        <div class="timeline-text">Saved from demolition — repurposed as a military radio transmission tower.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1930</div>
+        <div class="timeline-text">Loses title of world's tallest structure to New York's Chrysler Building.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1985</div>
+        <div class="timeline-text">The iconic nighttime golden lighting system is installed.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Today</div>
+        <div class="timeline-text">Welcomes over 7 million visitors annually — the world's most visited monument.</div>
+      </div>
+    </div>
+
+    <h2><span class="h2-icon">💡</span> Interesting Facts</h2>
+
+    <ul class="facts-list">
+      <li>Made of ~7,300 tonnes of wrought iron held together by 2.5 million rivets.</li>
+      <li>Was the world's tallest structure for 41 years until the Chrysler Building (1930).</li>
+      <li>Repainted every 7 years using around 60 tonnes of paint to prevent rust.</li>
+      <li>Can grow up to 15 cm taller in summer due to thermal expansion of iron.</li>
+      <li>Has 1,665 steps and three separate observation decks at different heights.</li>
+      <li>Sparkles with 20,000 bulbs every evening — five minutes each hour after sunset.</li>
+      <li>Gustave Eiffel had a private apartment at the very top of the tower.</li>
+      <li>About 300 workers spent over 2 years assembling the tower's 18,000 parts.</li>
+    </ul>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-title">La Tour Eiffel</div>
+    <div class="footer-line"></div>
+    <p>A timeless iron masterpiece rising above the rooftops of Paris — forever an emblem of human ambition and beauty.</p>
+  </footer>
+
+</body>
+</html>
